@@ -5,7 +5,7 @@
 # PortfolioPro
 ### AI Project Context & Engineering Specification
 
-Version: 1.0
+Version: 2.0
 
 Owner: Simphiwe Morare
 
@@ -19,7 +19,7 @@ https://stmorare.github.io
 
 # 1. Project Vision
 
-PortfolioPro is a premium recruiter-focused personal portfolio website that showcases the professional profile of Simphiwe Morare.
+PortfolioPro is a premium recruiter-focused personal portfolio website that showcases the professional profile of Simphiwe Tebogo Morare.
 
 The website must communicate professionalism, technical competence, attention to detail and modern engineering practices.
 
@@ -33,13 +33,9 @@ The project itself should become part of the portfolio.
 
 The portfolio should help achieve the following objectives:
 
-• Obtain interviews for Enterprise IT Support Engineer roles
+• Showcase enterprise IT experience
 
 • Demonstrate software engineering principles
-
-• Showcase certifications
-
-• Showcase enterprise IT experience
 
 • Showcase technical projects
 
@@ -50,6 +46,8 @@ The portfolio should help achieve the following objectives:
 • Demonstrate clean architecture
 
 • Demonstrate modern frontend development
+
+• Showcase certifications
 
 ---
 
@@ -217,82 +215,97 @@ Current structure
 
 stmorare.github.io/
 
+app/
+
+public/
+
 docs/
 
 designs/
 
 resources/
 
+package.json
+
+package-lock.json
+
+tsconfig.json
+
+next.config.ts
+
+postcss.config.mjs
+
+eslint.config.mjs
+
 README.md
 
 LICENSE
 
-Next.js files will be generated later.
+.gitignore
 
 ---
 
-# 11. Current Progress
+# 11. Documentation Structure
+
+01_PROJECT
+
+02_ENGINEERING
+
+03_LEARNING
+
+04_AI
+
+*Documentation is organised by purpose rather than file type.*
+
+# 12. Current Progress
 
 Completed
 
-Repository created
+✓ Repository created
 
-Git installed
+✓ Git installed
 
-Node.js installed
+✓ Node.js installed
 
-npm installed
+✓ npm installed
 
-GitHub repository cloned locally
+✓ GitHub repository cloned
 
-VS Code configured
+✓ VS Code configured
 
-Git Bash configured
+✓ Git Bash configured
 
-Project documentation started
+✓ Documentation established
 
-Repository reorganized
+✓ GitHub Issues created
 
-GitHub Issues created
+✓ GitHub Milestones created
 
-GitHub Milestones created
+✓ Initial project structure created
 
-Folder structure established
+✓ Next.js application generated
 
-Pending
+✓ Generated project reviewed
 
-Generate Next.js project
+✓ Repository refactored
 
-Review generated project
+✓ Nested Git repository removed
 
-Create first Git commit
+✓ Dependencies installed
 
-Run first local application
+✓ Local development server verified
 
-Begin UI implementation
+✓ Next.js application integrated into GitHub repository
 
----
+✓ Commit #1 completed
 
-# 12. AI Assistant Behaviour
+✓ Commit #2 completed
 
-When assisting with this repository:
+Current Sprint
 
-Always explain WHY before HOW.
+Sprint 2
 
-Never skip engineering reasoning.
-
-Avoid unnecessary complexity.
-
-Prefer maintainability over cleverness.
-
-Use modern best practices.
-
-Explain Git commands before they are executed.
-
-Review architecture decisions before implementation.
-
-Treat the project as if mentoring a junior engineer.
-
+Build Portfolio Layout
 ---
 
 # 13. Coding Standards
@@ -375,16 +388,38 @@ The repository itself should become a portfolio piece.
 
 # 17. Current Lesson
 
-Lesson 4
+Sprint 2
 
-Next Task:
+Lesson 2.1
 
-Generate a new Next.js project using:
+Clean the default Next.js template.
 
-npx create-next-app@latest .
+Begin building PortfolioPro.
 
-After generation, every generated file and folder must be explained before writing application code.
+Next Task
 
----
+Create the application layout.
 
-END OF DOCUMENT
+Replace the default template with the PortfolioPro foundation.
+
+# 18. AI Collaboration Guidelines
+
+This document is intended to be shared with AI assistants such as ChatGPT (OpenAI), Gemini (Google DeepMind) etc.
+
+AI assistants should:
+
+- preserve the existing architecture;
+- explain engineering decisions before implementation;
+- avoid unnecessary rewrites;
+- maintain documentation quality;
+- prefer reusable components;
+- keep Git commits small and meaningful;
+- treat the project as a production-quality portfolio.
+
+# 19 Project Principles
+
+Documentation is considered part of the product.
+
+Engineering decisions should be documented alongside implementation.
+
+Every sprint should conclude with documentation updates before moving to the next sprint.
