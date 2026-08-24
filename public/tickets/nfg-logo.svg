@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <clipPath id="circleClip">
+      <circle cx="250" cy="250" r="230" />
+    </clipPath>
+    <!-- Sun glow gradient -->
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FEF08A" stop-opacity="1" />
+      <stop offset="60%" stop-color="#FDE047" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Base White Circular Canvas -->
+  <circle cx="250" cy="250" r="230" fill="#FFFFFF" />
+
+  <!-- Inside Clipped Graphics (Hills + Sun) -->
+  <g clip-path="url(#circleClip)">
+    <!-- Sun on Horizon -->
+    <circle cx="250" cy="380" r="110" fill="url(#sunGlow)" />
+    <circle cx="250" cy="380" r="50" fill="#FACC15" opacity="0.8" />
+
+    <!-- Distant Mountain/Hill Wave -->
+    <path d="M 0,380 Q 130,340 250,385 T 500,360 L 500,500 L 0,500 Z" fill="#D9F99D" opacity="0.7" />
+
+    <!-- Midground Hill Wave Layer 1 -->
+    <path d="M 0,370 Q 140,430 310,380 T 500,430 L 500,500 L 0,500 Z" fill="#65A30D" opacity="0.85" />
+
+    <!-- Midground Hill Wave Layer 2 (Blue-Green) -->
+    <path d="M 0,400 Q 180,480 360,410 T 500,450 L 500,500 L 0,500 Z" fill="#0D9488" opacity="0.8" />
+
+    <!-- Foreground Left Deep Green Slope -->
+    <path d="M -10,350 Q 80,450 250,490 L -10,500 Z" fill="#4D7C0F" />
+
+    <!-- Foreground Blue-Teal Ocean/Shadow Wave -->
+    <path d="M 100,500 Q 280,450 510,470 L 510,500 Z" fill="#15803D" />
+    <path d="M 20,430 Q 180,490 350,500 L 20,500 Z" fill="#0284C7" opacity="0.75" />
+  </g>
+
+  <!-- Circular Outer Border -->
+  <circle cx="250" cy="250" r="230" fill="none" stroke="#111827" stroke-width="12" />
+
+  <!-- NFG Bold Typography in Upper Area -->
+  <text x="250" y="270" text-anchor="middle" fill="#B91C1C" font-family="'Arial Black', 'Impact', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="142" font-weight="900" letter-spacing="4">
+    NFG
+  </text>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 375" width="100%" height="100%">
+  <defs>
+    <!-- Background -->
+    <rect id="bg" width="1000" height="375" fill="#04091A" />
+
+    <!-- Dot Pattern -->
+    <pattern id="greenDots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="11" cy="11" r="1.8" fill="#00E599" opacity="0.45" />
+    </pattern>
+
+    <!-- Gradients -->
+    <linearGradient id="silverChevron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0" />
+      <stop offset="100%" stop-color="#94A3B8" />
+    </linearGradient>
+
+    <linearGradient id="mintChevron" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00FFA3" />
+      <stop offset="100%" stop-color="#00D284" />
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="1000" height="375" fill="#030816" />
+
+  <!-- Dot Matrix on Left -->
+  <rect x="0" y="0" width="380" height="375" fill="url(#greenDots)" opacity="0.85" />
+
+  <!-- Bottom-Left Silver Angular Chevron -->
+  <g transform="translate(-10, 130)">
+    <path d="M 95,25 L 20,105 L 20,240 L 170,240 L 255,150 L 170,150 L 95,150 Z" fill="url(#silverChevron)" />
+  </g>
+
+  <!-- Top-Right Mint Angular Chevron -->
+  <g transform="translate(740, 10)">
+    <path d="M 95,25 L 20,105 L 20,240 L 170,240 L 255,150 L 170,150 L 95,150 Z" transform="rotate(180, 137, 132)" fill="url(#mintChevron)" />
+  </g>
+
+  <!-- Logo Group -->
+  <!-- "catch" in bold lowercase white -->
+  <text x="500" y="200" text-anchor="end" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="900" letter-spacing="-1.5">
+    catch
+  </text>
+
+  <!-- Stylized "22" Logo Graphic -->
+  <g transform="translate(515, 125)">
+    <!-- First '2' -->
+    <path d="M 0,22 C 0,8 10,0 24,0 C 38,0 48,8 48,22 C 48,32 40,42 26,56 L 48,56 L 48,72 L 0,72 L 0,60 L 22,36 C 28,30 32,26 32,20 C 32,14 28,10 22,10 C 16,10 12,14 12,20 Z" fill="#FFFFFF" />
+    <path d="M 8,2 C 14,-2 22,-2 28,2 L 48,22 L 40,28 L 24,12 C 20,8 14,8 8,12 Z" fill="#FFFFFF" opacity="0.9" />
+
+    <!-- Second '2' -->
+    <g transform="translate(56, 0)">
+      <path d="M 0,22 C 0,8 10,0 24,0 C 38,0 48,8 48,22 C 48,32 40,42 26,56 L 48,56 L 48,72 L 0,72 L 0,60 L 22,36 C 28,30 32,26 32,20 C 32,14 28,10 22,10 C 16,10 12,14 12,20 Z" fill="#FFFFFF" />
+      <path d="M 8,2 C 14,-2 22,-2 28,2 L 48,22 L 40,28 L 24,12 C 20,8 14,8 8,12 Z" fill="#FFFFFF" opacity="0.9" />
+    </g>
+  </g>
+
+  <!-- Tagline: ADDING REAL VALUE TO FM RECRUITMENT -->
+  <text x="560" y="260" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="800" letter-spacing="7">
+    <tspan fill="#FFFFFF">ADDING </tspan>
+    <tspan fill="#00FFA3">REAL VALUE TO </tspan>
+    <tspan fill="#FFFFFF">FM RECRUITMENT</tspan>
+  </text>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 360" width="100%" height="100%">
+  <!-- Clean Crisp White Canvas -->
+  <rect width="1000" height="360" fill="#FFFFFF" rx="16" />
+
+  <g transform="translate(60, 60)">
+    <!-- UHY Stylized Navy Monogram Logo -->
+    <g transform="translate(0, 0)">
+      <!-- Letter U -->
+      <path d="M 0,20 L 26,20 L 26,110 C 26,135 42,150 65,150 C 88,150 104,135 104,110 L 104,20 L 130,20 L 130,112 C 130,152 102,175 65,175 C 28,175 0,152 0,112 Z" fill="#0C3B66" />
+      
+      <!-- Letter H -->
+      <path d="M 150,20 L 176,20 L 176,80 L 230,80 L 230,20 L 256,20 L 256,170 L 230,170 L 230,105 L 176,105 L 176,170 L 150,170 Z" fill="#0C3B66" />
+
+      <!-- Letter Y with swooping bottom loop -->
+      <path d="M 276,20 L 304,20 L 328,88 L 352,20 L 380,20 L 342,112 L 342,145 C 342,175 320,195 285,195 C 262,195 245,188 238,180 L 248,160 C 255,166 268,172 284,172 C 305,172 316,160 316,142 L 316,112 Z" fill="#0C3B66" />
+    </g>
+
+    <!-- Right Side Brand Typography -->
+    <g transform="translate(420, 10)">
+      <!-- "Calvert Smith" -->
+      <text x="0" y="70" fill="#0C3B66" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="1">
+        Calvert Smith
+      </text>
+
+      <!-- Thin Blue Accent Line -->
+      <line x1="0" y1="102" x2="520" y2="102" stroke="#0C3B66" stroke-width="3.5" stroke-linecap="round" />
+
+      <!-- "Chartered Accountants" -->
+      <text x="0" y="145" fill="#334155" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="400" letter-spacing="3">
+        Chartered Accountants
+      </text>
+    </g>
+  </g>
+</svg>
