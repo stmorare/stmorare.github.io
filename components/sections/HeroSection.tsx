@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
 import {
@@ -10,46 +10,24 @@ import {
   MapPin,
   CheckCircle2,
   Phone,
-  Camera,
-  UploadCloud,
   Check,
   Copy,
 } from 'lucide-react';
 import { Badge } from '../ui/Badge';
 import { SectionHeader } from '../ui/SectionHeader';
-import { getAvatarFromStorage, saveAvatarToStorage } from '@/lib/imageStore';
 
 export const HeroSection: React.FC = () => {
   const [profileImgSrc, setProfileImgSrc] = useState<string>('/headshot.png');
-  const [isUploading, setIsUploading] = useState<boolean>(false);
-  const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
+  const [hasImageError, setHasImageError] = useState<boolean>(false);
+  const [imageFallbackIndex, setImageFallbackIndex] = useState<number>(0);
   const [copiedEmail, setCopiedEmail] = useState<boolean>(false);
   const [copiedPhone, setCopiedPhone] = useState<boolean>(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Safely restore persistent avatar from IndexedDB after client mount
-  useEffect(() => {
-    let isMounted = true;
-    getAvatarFromStorage().then((savedAvatar) => {
-      if (isMounted && savedAvatar) {
-        setProfileImgSrc(savedAvatar);
-      }
-    });
-
-    try {
-      localStorage.removeItem('simphiwe_custom_headshot');
-    } catch {
-      // ignore
-    }
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
-  const handleAvatarClick = () => {
-    fileInputRef.current?.click();
-  };
+  const fallbackPaths = [
+    '/headshot.png',
+    '/resources/images/headshot.png',
+    '/images/headshot.png',
+  ];
 
   const handleCopy = (text: string, type: 'email' | 'phone') => {
     navigator.clipboard.writeText(text);
@@ -62,40 +40,13 @@ export const HeroSection: React.FC = () => {
     }
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    // Instant local preview
-    const localUrl = URL.createObjectURL(file);
-    setProfileImgSrc(localUrl);
-
-    // Save to IndexedDB persistently
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      if (event.target?.result && typeof event.target.result === 'string') {
-        await saveAvatarToStorage(event.target.result);
-      }
-    };
-    reader.readAsDataURL(file);
-
-    // Upload to server to persist in public directory
-    setIsUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
-      const res = await fetch('/api/upload-headshot', {
-        method: 'POST',
-        body: formData,
-      });
-      if (res.ok) {
-        setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 3000);
-      }
-    } catch (err) {
-      console.error('Failed to upload headshot to server', err);
-    } finally {
-      setIsUploading(false);
+  const handleImageError = () => {
+    if (imageFallbackIndex + 1 < fallbackPaths.length) {
+      const nextIndex = imageFallbackIndex + 1;
+      setImageFallbackIndex(nextIndex);
+      setProfileImgSrc(fallbackPaths[nextIndex]);
+    } else {
+      setHasImageError(true);
     }
   };
 
@@ -103,16 +54,6 @@ export const HeroSection: React.FC = () => {
     <section id="hero" className="academic-grid-bg py-8 sm:py-12 px-4 sm:px-6 lg:px-8 border-b border-slate-800/80">
       <div className="max-w-5xl mx-auto space-y-6">
         
-        {/* Hidden File Input for Real Photo Upload */}
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleFileChange}
-          accept="image/*"
-          className="hidden"
-          id="headshot-upload-input"
-        />
-
         {/* LinkedIn-Style Top Profile Card */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -135,36 +76,31 @@ export const HeroSection: React.FC = () => {
           {/* Profile Header Body */}
           <div className="p-6 pt-0 relative">
             
-            {/* Avatar & Action Header */}
+            {/* Avatar & Verification Badge */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 -mt-16 sm:-mt-20 mb-4">
               
-              {/* Profile Avatar Frame with Click-to-Upload */}
+              {/* Profile Avatar Frame (Locked & Read-Only) */}
               <div className="relative shrink-0 group">
                 <div
-                  onClick={handleAvatarClick}
-                  className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-[#0B0F17] bg-slate-900 shadow-2xl overflow-hidden relative cursor-pointer group"
-                  title="Click to select/change your authentic headshot photo"
+                  className="w-28 h-28 sm:w-36 sm:h-36 rounded-full border-4 border-[#0B0F17] bg-slate-900 shadow-2xl overflow-hidden relative flex items-center justify-center ring-2 ring-blue-500/20"
                 >
-                  <Image
-                    src={profileImgSrc}
-                    alt="Simphiwe Tebogo Morare"
-                    width={144}
-                    height={144}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    priority
-                    unoptimized
-                    onError={() => {
-                      if (profileImgSrc !== '/profile.jpg') {
-                        setProfileImgSrc('/profile.jpg');
-                      }
-                    }}
-                  />
-
-                  {/* Hover Camera Overlay */}
-                  <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-[11px] font-bold p-1 text-center backdrop-blur-2xs">
-                    <Camera className="w-6 h-6 mb-1 text-blue-400" />
-                    <span>Change Photo</span>
-                  </div>
+                  {!hasImageError ? (
+                    <Image
+                      src={profileImgSrc}
+                      alt="Simphiwe Tebogo Morare"
+                      width={144}
+                      height={144}
+                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                      priority
+                      unoptimized
+                      onError={handleImageError}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-blue-950 via-slate-900 to-slate-950 flex flex-col items-center justify-center text-blue-200">
+                      <span className="text-2xl font-bold tracking-wider text-blue-400">SM</span>
+                      <span className="text-[10px] text-blue-300 font-mono mt-0.5">IT Professional</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Verified Enterprise Badge */}
@@ -174,27 +110,6 @@ export const HeroSection: React.FC = () => {
                 >
                   <CheckCircle2 className="w-4 h-4 text-blue-400" />
                 </div>
-              </div>
-
-              {/* Upload Status / Quick Action Tag */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleAvatarClick}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 hover:text-slate-100 text-xs font-semibold shadow-xs transition-colors cursor-pointer"
-                >
-                  {uploadSuccess ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-emerald-400" />
-                      <span className="text-emerald-400 font-bold">Photo Applied</span>
-                    </>
-                  ) : (
-                    <>
-                      <UploadCloud className="w-3.5 h-3.5 text-blue-400" />
-                      <span>{isUploading ? 'Saving...' : 'Upload/Replace Photo'}</span>
-                    </>
-                  )}
-                </button>
               </div>
 
             </div>
