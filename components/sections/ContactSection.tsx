@@ -57,7 +57,7 @@ export const ContactSection: React.FC = () => {
                 </a>
 
                 <a
-                  href="tel:0614629169"
+                  href="tel:0677288381"
                   className="flex items-center gap-3 p-3 rounded-lg bg-blue-950/40 border border-blue-900/50 text-slate-200 hover:text-blue-300 hover:border-blue-700 transition-all group"
                 >
                   <div className="p-2 rounded-md bg-blue-900/60 text-blue-400 group-hover:scale-105 transition-transform shrink-0">
@@ -65,7 +65,7 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <span className="block text-[11px] text-slate-400 font-mono uppercase">Phone Number</span>
-                    <span className="font-semibold">061 462 9169</span>
+                    <span className="font-semibold">067 728 8381</span>
                   </div>
                 </a>
 
